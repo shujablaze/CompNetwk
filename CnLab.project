@@ -93,7 +93,9 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
-    <File Name="Hill_Cipher.cpp" ExcludeProjConfig=""/>
+    <File Name="playfair_without_Stl" ExcludeProjConfig="Debug;"/>
+    <File Name="Playfair_cipher.cpp" ExcludeProjConfig=""/>
+    <File Name="Hill_Cipher.cpp" ExcludeProjConfig="Debug;"/>
     <File Name="Vernam_cipher.cpp" ExcludeProjConfig="Debug;"/>
     <File Name="main.cpp" ExcludeProjConfig="Debug;"/>
   </VirtualDirectory>

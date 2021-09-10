@@ -14,7 +14,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=shuja
-Date                   :=02/09/2021
+Date                   :=09/09/2021
 CodeLitePath           :="E:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := C:/MinGW/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=E:\Program Files\CodeLite
-Objects0=../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Hill_Cipher.cpp$(ObjectSuffix) 
+Objects0=../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(ObjectSuffix) 
 
 
 
@@ -93,13 +93,13 @@ PreBuild:
 ##
 ## Objects
 ##
-../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Hill_Cipher.cpp$(ObjectSuffix): Hill_Cipher.cpp ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Hill_Cipher.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/oopsLab/CnLab/CnLab/Hill_Cipher.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Hill_Cipher.cpp$(ObjectSuffix) $(IncludePath)
-../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Hill_Cipher.cpp$(DependSuffix): Hill_Cipher.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Hill_Cipher.cpp$(ObjectSuffix) -MF../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Hill_Cipher.cpp$(DependSuffix) -MM Hill_Cipher.cpp
+../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(ObjectSuffix): Playfair_cipher.cpp ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/oopsLab/CnLab/CnLab/Playfair_cipher.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Playfair_cipher.cpp$(ObjectSuffix) $(IncludePath)
+../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(DependSuffix): Playfair_cipher.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(ObjectSuffix) -MF../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(DependSuffix) -MM Playfair_cipher.cpp
 
-../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Hill_Cipher.cpp$(PreprocessSuffix): Hill_Cipher.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Hill_Cipher.cpp$(PreprocessSuffix) Hill_Cipher.cpp
+../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(PreprocessSuffix): Playfair_cipher.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(PreprocessSuffix) Playfair_cipher.cpp
 
 
 -include ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab//*$(DependSuffix)
