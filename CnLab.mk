@@ -14,7 +14,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=shuja
-Date                   :=09/09/2021
+Date                   :=16/09/2021
 CodeLitePath           :="E:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW/bin/g++.exe -shared -fPIC
@@ -41,8 +41,8 @@ LinkOptions            :=
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := 
-ArLibs                 :=  
+Libs                   := $(LibrarySwitch)ws2_32 
+ArLibs                 :=  "ws2_32" 
 LibPath                := $(LibraryPathSwitch). 
 
 ##
@@ -62,7 +62,7 @@ AS       := C:/MinGW/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=E:\Program Files\CodeLite
-Objects0=../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(ObjectSuffix) 
+Objects0=../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(ObjectSuffix) 
 
 
 
@@ -93,13 +93,13 @@ PreBuild:
 ##
 ## Objects
 ##
-../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(ObjectSuffix): Playfair_cipher.cpp ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/oopsLab/CnLab/CnLab/Playfair_cipher.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Playfair_cipher.cpp$(ObjectSuffix) $(IncludePath)
-../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(DependSuffix): Playfair_cipher.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(ObjectSuffix) -MF../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(DependSuffix) -MM Playfair_cipher.cpp
+../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(ObjectSuffix): Sockets_client.cpp ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/oopsLab/CnLab/CnLab/Sockets_client.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Sockets_client.cpp$(ObjectSuffix) $(IncludePath)
+../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(DependSuffix): Sockets_client.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(ObjectSuffix) -MF../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(DependSuffix) -MM Sockets_client.cpp
 
-../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(PreprocessSuffix): Playfair_cipher.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Playfair_cipher.cpp$(PreprocessSuffix) Playfair_cipher.cpp
+../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(PreprocessSuffix): Sockets_client.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(PreprocessSuffix) Sockets_client.cpp
 
 
 -include ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab//*$(DependSuffix)

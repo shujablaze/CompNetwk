@@ -16,10 +16,10 @@ int main()
     while(text[i] != '\0')
     {
         if(text[i]>='A' && text[i]<='Z')
-            text[i] = (text[i]+key - 65) % 26 + 65 ;
+            text[i] = (text[i] + key - 65) % 26 + 65 ;
             
         else if(text[i]>='a' && text[i]<='z')
-            text[i] = (text[i]+key - 97) % 26 + 97;
+            text[i] = (text[i] + key - 97) % 26 + 97;
             
         i++;
     }
@@ -29,7 +29,11 @@ int main()
     cout << "\nDo you want to decipher the message(y/n): ";
     cin >> choice;
     
-    if(choice == 'y' || choice == 'Y')
+    
+
+
+
+if(choice == 'y' || choice == 'Y')
     {
         i=0;
         while(text[i] != '\0')
@@ -46,3 +50,4 @@ int main()
     }
     
 }
+
