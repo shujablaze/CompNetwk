@@ -14,7 +14,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=shuja
-Date                   :=16/09/2021
+Date                   :=07/10/2021
 CodeLitePath           :="E:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW/bin/g++.exe -shared -fPIC
@@ -52,7 +52,7 @@ LibPath                := $(LibraryPathSwitch).
 AR       := C:/MinGW/bin/ar.exe rcu
 CXX      := C:/MinGW/bin/g++.exe
 CC       := C:/MinGW/bin/gcc.exe
-CXXFLAGS :=  -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -g -O0 -std=c++14 -std=c++11 -Wall $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := C:/MinGW/bin/as.exe
@@ -62,7 +62,7 @@ AS       := C:/MinGW/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=E:\Program Files\CodeLite
-Objects0=../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(ObjectSuffix) 
+Objects0=../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/RailFence_cipher.cpp$(ObjectSuffix) 
 
 
 
@@ -93,13 +93,13 @@ PreBuild:
 ##
 ## Objects
 ##
-../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(ObjectSuffix): Sockets_client.cpp ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/oopsLab/CnLab/CnLab/Sockets_client.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Sockets_client.cpp$(ObjectSuffix) $(IncludePath)
-../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(DependSuffix): Sockets_client.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(ObjectSuffix) -MF../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(DependSuffix) -MM Sockets_client.cpp
+../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/RailFence_cipher.cpp$(ObjectSuffix): RailFence_cipher.cpp ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/RailFence_cipher.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/oopsLab/CnLab/CnLab/RailFence_cipher.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/RailFence_cipher.cpp$(ObjectSuffix) $(IncludePath)
+../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/RailFence_cipher.cpp$(DependSuffix): RailFence_cipher.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/RailFence_cipher.cpp$(ObjectSuffix) -MF../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/RailFence_cipher.cpp$(DependSuffix) -MM RailFence_cipher.cpp
 
-../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(PreprocessSuffix): Sockets_client.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/Sockets_client.cpp$(PreprocessSuffix) Sockets_client.cpp
+../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/RailFence_cipher.cpp$(PreprocessSuffix): RailFence_cipher.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab/RailFence_cipher.cpp$(PreprocessSuffix) RailFence_cipher.cpp
 
 
 -include ../../oopsLab/build-$(ConfigurationName)/__/CnLab/CnLab//*$(DependSuffix)

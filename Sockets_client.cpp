@@ -1,5 +1,7 @@
 #include <iostream>
 #include <winsock2.h>
+#include <thread>
+
 
 #define BUFFLEN 4096
 #define PORT 8080
@@ -9,7 +11,6 @@ using namespace std;
 int main()
 {
     WSADATA wsconfig;
-    
     SOCKET client;
     
     char buf[4096] = {0};
@@ -45,7 +46,7 @@ int main()
     
     while(connected)
     {
-        cout << "\n\t\tShuja : ";
+        cout << "\n\t\tClient : ";
         gets(buf);
         
         send(client,buf,buflen,0);
@@ -60,6 +61,7 @@ int main()
 
         cout <<"Server: " << buf << endl;
     }
+
     
     closesocket(client);
 }
