@@ -4,7 +4,7 @@
 -Ic:\MinGW\lib\gcc\mingw32\9.2.0\include
 -Ic:\MinGW\include
 -Ic:\MinGW\lib\gcc\mingw32\9.2.0\include-fixed
--IE:\oopsLab\CnLab\CnLab
+-ID:\oopsLab\CnLab\CnLab
 -std=c++11
 -target
 i686-pc-windows-gnu

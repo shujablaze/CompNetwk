@@ -1,5 +1,8 @@
+//Testing
 #include <iostream>
 #include <winsock2.h>
+#include <fstream>
+#include <string>
 
 #define BUFFLEN 4096
 #define PORT 8080
@@ -29,7 +32,7 @@ int main()
     }
     
 
-    // Creating a socket to listen to requests //AF_INET -> IPV4  SOCK_STREAM -> TCP  0 -> default(IP)
+    // Creating a socket to listen to requests //AF_INET->IPV4  SOCK_STREAM->TCP  0->default(IP)
     listening_socket = socket(AF_INET,SOCK_STREAM,0);
 
     if(listening_socket == INVALID_SOCKET){
@@ -74,11 +77,11 @@ int main()
     
     while(connected){
         // Storing data in buffer
-        if(recv(connection_socket,buff,bufflen,0) == SOCKET_ERROR)
-        {
-            cout << "Failure while reading" << endl;
-            return -1;
-        }
+        //if(recv(connection_socket,buff,bufflen,0) == SOCKET_ERROR)
+        //{
+        //    cout << "Failure while reading" << endl;
+        //    return -1;
+        //}
         
         // Checking if client want to leave
         if(!strcmp(buff,"quit"))
@@ -87,14 +90,43 @@ int main()
             break;
         }
         
-        // Dialogue Box 
-        cout << "\nClient :  " << buff;
+        //string file_name = string(buff,bufflen);
         
-        cout << "\n\t\tServer :  ";
-        gets(buff);
+        cout << "reading file";
+        ifstream in;
         
-        // Sending data in buffer
-        send(connection_socket,buff,bufflen,0);
+        in.open("input.txt");
+        ZeroMemory(&buff, bufflen);
+        buff[0] = '1';
+        
+        char *memblock;
+        int i=0;
+        
+        if(in.is_open())
+        {
+            while(1)
+            {
+                memblock = new char[bufflen];
+                
+                in.getline(memblock,bufflen-1);
+                memblock[bufflen-1] = '\n';
+
+                cout << "sending packet" << endl;
+                send(connection_socket,memblock,bufflen,0);
+                cout << memblock << endl;
+                if(in.eof()) break;
+                //ZeroMemory( &buff, bufflen);
+                delete [] memblock;
+                
+            }
+            strcpy(buff,"ack");
+            send(connection_socket,buff,bufflen,0);
+            exit(0);
+        }
+        else {
+            cout << "No such file" << endl;
+        }
+       
     }
     
     cout << "\nServer Shutting Down..." ;

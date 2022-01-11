@@ -1,9 +1,17 @@
 #include <iostream>
 #include <winsock2.h>
 #include <cstring>
+#include <vector>
 
 #define BUFFLEN 4096
 #define PORT 8080
+
+#define JOIN_ROOM_1 1
+#define JOIN_ROOM_2 2
+#define SEND_MESSAGE_ROOM_1 3
+#define SEND_MESSAGE_ROOM_2 4
+#define EXIT_ROOM_1 5
+#define EXIT_ROOM_2 6
 
 using namespace std;
 
@@ -60,14 +68,19 @@ int main()
     cout << "Listening to requests.....\n" <<endl;
     
     fd_set clients;
+    
+    vector<SOCKET> room1_clients;
+    vector<SOCKET> room2_clients;
+    
     FD_ZERO(&clients);
     
     FD_SET(listening_socket,&clients);
     
     while(true)
     {
+        try{
         fd_set clients_copy = clients;
-        
+        memset(&buff,0,bufflen);
         int clientCount = select(0,&clients_copy,nullptr,nullptr,nullptr);
         
         for(int i = 0 ; i < clientCount; ++i ){
@@ -79,9 +92,7 @@ int main()
             {
                 connection_socket = accept(listening_socket,(sockaddr *)&client_addr,&addrlen);
                 FD_SET(connection_socket,&clients);
-                
-                char welcome[] = "\nWelcome to the chatroom\n";
-                send(connection_socket,welcome,sizeof(welcome),0);
+                cout << "Client " << to_string(connection_socket) << " Joined" << endl;
             }
             else
             {
@@ -98,21 +109,96 @@ int main()
                 }
                 else
                 {
-                    for(int i = 0 ; i < clients.fd_count ; ++i){
+                    // Header matches for broadcast
+                    if(buff[0] == '0'){
+                        cout << "Received Broadcast request from client " << to_string(socket) << endl;
+                        for(int i = 0 ; i < clients.fd_count ; ++i){
                         SOCKET outgoing = clients.fd_array[i];
     
-                        if(outgoing != listening_socket && outgoing != socket)
-                        {
-                            string final_buff = "Client " + to_string(i) + " " + buff;
-                            send(outgoing,final_buff.c_str(),bufflen,0);
+                            if(outgoing != listening_socket && outgoing != socket)
+                            {
+                                string buffer = string(buff);
+                                // Removing headers
+                                buffer[0] = ':';
+                                buffer[1] = ' ';
+                                string final_buff = "(Broadcast) Client " + to_string(socket) + buffer;
+                                send(outgoing,final_buff.c_str(),bufflen,0);
+                            }
                         }
                     }
+                    
+                    else if(buff[0] == '1'){
+                        cout << "Received Multicast related request from client "; 
+                        cout << to_string(socket) << endl;    
+                        string message = "";
+                        switch(buff[1] - '0'){
+                        case JOIN_ROOM_1:
+                            room1_clients.push_back(socket);
+                            message = "#Joined room 1";
+                            break;
+                            
+                        case JOIN_ROOM_2:
+                            room2_clients.push_back(socket);
+                            message = "#Joined room 2";
+                            break;
+                            
+                        case SEND_MESSAGE_ROOM_1:
+                            for(int i = 0; i < room1_clients.size() ; ++i){
+                                if(room1_clients[i] != socket){
+                                    string buffer = string(buff);
+                                    // Removing headers
+                                    buffer[0] = ':';
+                                    buffer[1] = ' ';
+                                    string final_buff = "(Room 1) Client " + to_string(socket) + buffer;
+                                    send(room1_clients[i],final_buff.c_str(),bufflen,0);
+                                }
+                            }
+                            break;
+                            
+                        case SEND_MESSAGE_ROOM_2:
+                            for(int i = 0; i < room2_clients.size() ; ++i){
+                                if(room2_clients[i] != socket){
+                                    string buffer = string(buff);
+                                    // Removing headers
+                                    buffer[0] = ':';
+                                    buffer[1] = ' ';
+                                    string final_buff = "(Room 2) Client " + to_string(socket) + buffer;
+                                    send(room2_clients[i],final_buff.c_str(),bufflen,0);
+                                }
+                            }
+                            break;
+                            
+                        case EXIT_ROOM_1:
+                            for(int i = 0; i < room1_clients.size() ; ++i){
+                                if(room1_clients[i] == socket){
+                                    room1_clients.erase(room1_clients.begin() + i);
+                                }
+                            }
+                            message = "#Left room 1";
+                            break;
+                            
+                        case EXIT_ROOM_2:
+                            for(int i = 0; i < room2_clients.size() ; ++i){
+                                if(room2_clients[i] == socket){
+                                    room2_clients.erase(room2_clients.begin() + i);
+                                }
+                            }
+                            message = "#Left room 1";
+                            break;
+                        }
+                        if(message.size() > 0){
+                            send(socket,message.c_str(),message.size(),0);
+                        }
+                    }
+                    
                 }
             }
         }
+        
+        }catch(exception){
+            cout << "Error while sending" << endl;
+        }
     }
-    
-    
     
     cout << "\nServer Shutting Down..." ;
    

@@ -8,10 +8,12 @@ using namespace std;
 
 int main()
 {
+    // Datastructure for stubs of winsock2 config
     WSADATA winsock_config;
     
     SOCKET listening_socket , connection_socket;
     
+    // Address structures
     struct sockaddr_in server_addr,client_addr;
     
     int addrlen = sizeof(client_addr);
@@ -71,8 +73,30 @@ int main()
     // No need for listening socket if we only have one client here.
     // closesocket(listening_socket);
     bool connected = true;
+    bool flag = false;
     
     while(connected){
+        // Dialogue Box 
+        
+        cout << "\n\t\tServer :  ";
+        gets(buff);
+        
+        // Checking if string entered has 1s and 0s only
+        for(int i=0;i<strlen(buff);++i){
+            if(buff[i]!='0' && buff[i]!='1'){
+                flag = true;
+            }
+        }
+        
+        if(flag){
+            cout << "Only binary strings are allowed try again..." << endl;
+            flag = false;
+            continue;
+        }
+        
+        // Sending data in buffer
+        send(connection_socket,buff,bufflen,0);
+        
         // Storing data in buffer
         if(recv(connection_socket,buff,bufflen,0) == SOCKET_ERROR)
         {
@@ -87,14 +111,7 @@ int main()
             break;
         }
         
-        // Dialogue Box 
-        cout << "\nClient :  " << buff;
-        
-        cout << "\n\t\tServer :  ";
-        gets(buff);
-        
-        // Sending data in buffer
-        send(connection_socket,buff,bufflen,0);
+        cout << "Client :  " << buff << endl;
     }
     
     cout << "\nServer Shutting Down..." ;

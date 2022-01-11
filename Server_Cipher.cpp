@@ -6,6 +6,9 @@
 
 using namespace std;
 
+string encrypt_text(string text,string key);
+string decrypt_text(string text,string key);
+
 int main()
 {
     WSADATA winsock_config;
@@ -29,7 +32,7 @@ int main()
     }
     
 
-    // Creating a socket to listen to requests //AF_INET -> IPV4  SOCK_STREAM -> TCP  0 -> default(IP)
+    // Creating a socket to listen to requests //AF_INET->IPV4  SOCK_STREAM->TCP  0->default(IP)
     listening_socket = socket(AF_INET,SOCK_STREAM,0);
 
     if(listening_socket == INVALID_SOCKET){
@@ -71,6 +74,7 @@ int main()
     // No need for listening socket if we only have one client here.
     // closesocket(listening_socket);
     bool connected = true;
+    string key,encrypted,decrypted;
     
     while(connected){
         // Storing data in buffer
@@ -81,20 +85,29 @@ int main()
         }
         
         // Checking if client want to leave
-        if(!strcmp(buff,"quit"))
+        if(strlen(buff) == 0)
         {
             connected = false;
             break;
         }
         
         // Dialogue Box 
-        cout << "\nClient :  " << buff;
+        cout << "\nClient :  " << buff << endl;
+        encrypted = string(buff);
+        cout << "Enter decryption key: ";
+        cin>>key;
+        decrypted = decrypt_text(encrypted,key);
+        cout << "Decrypted : " << decrypted << endl;
         
         cout << "\n\t\tServer :  ";
-        gets(buff);
+        cin.sync();
+        getline(cin,decrypted);
+        cout << "\t\tEnter encryption key: ";
+        cin >> key;
+        encrypted = encrypt_text(decrypted,key);
         
         // Sending data in buffer
-        send(connection_socket,buff,bufflen,0);
+        send(connection_socket,encrypted.c_str(),bufflen,0);
     }
     
     cout << "\nServer Shutting Down..." ;
@@ -105,4 +118,44 @@ int main()
     WSACleanup();
     
     return 0;
+}
+
+string encrypt_text(string text,string key){
+    string vigenere_key = key;
+    while(vigenere_key.length() < text.length()){
+        vigenere_key += key;
+    }
+    
+    key = vigenere_key;
+    
+    for(int i=0;i<text.length();++i){
+        if(text[i] >= 65 && text[i] < 91){
+            text[i] = (text[i]  + toupper(key[i]) - 130) % 26 + 65;
+        }
+        else if(text[i] >= 97 && text[i] < 123){
+            text[i] = (text[i] + tolower(key[i]) - 194) % 26 + 97;
+        }
+    }
+    return text;
+}
+
+string decrypt_text(string text,string key){
+    string vigenere_key = key;
+    while(vigenere_key.length() < text.length()){
+        vigenere_key += key;
+    }
+    
+    key = vigenere_key;
+    
+    for(int i=0;i<text.length();++i){
+        if(text[i]>=65 && text[i] < 91){
+            text[i] = (text[i]  - toupper(key[i])) % 26;
+            text[i] = (text[i] < 0)? text[i] + 26 + 65 : text[i] + 65;
+        }
+        else if(text[i]>=97 && text[i] < 123){
+            text[i] = (text[i] - tolower(key[i])) % 26;
+            text[i] = (text[i] < 0)? text[i] + 26 + 97 : text[i] + 97;
+        }
+    }
+    return text;
 }

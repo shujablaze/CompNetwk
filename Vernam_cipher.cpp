@@ -11,10 +11,20 @@ int main(){
     cout << "Enter the key : ";
     getline(cin,key);
     
+    // Vernam Conditions
     while(key.length()!=text.length()){
         cout<<"Please enter a valid key : ";
         getline(cin,key);
     }
+    
+    /* VIGENERE CONDITIONS
+    string vigenere_key = key;
+    while(vigenere_key.length() < text.length()){
+        vigenere_key += key;
+    }
+    
+    key = vigenere_key;
+    */
     
     for(int i=0;i<text.length();++i){
         if(text[i] >= 65 && text[i] < 91){

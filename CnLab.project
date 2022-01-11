@@ -3,7 +3,17 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="RailFence_cipher.cpp"/>
+    <File Name="Client_final.cpp"/>
+    <File Name="Server_final.cpp"/>
+    <File Name="client_multi_fina;.cpp" ExcludeProjConfig="Debug;"/>
+    <File Name="TimeStamp_Client.cpp" ExcludeProjConfig="Debug;"/>
+    <File Name="Server_Cipher.cpp" ExcludeProjConfig="Debug;"/>
+    <File Name="Client_Cipher.cpp" ExcludeProjConfig="Debug;"/>
+    <File Name="Server_pic.cpp" ExcludeProjConfig="Debug;"/>
+    <File Name="Client_pic.cpp" ExcludeProjConfig="Debug;"/>
+    <File Name="Client_file.cpp" ExcludeProjConfig="Debug;"/>
+    <File Name="Server_file.cpp" ExcludeProjConfig="Debug;"/>
+    <File Name="RailFence_cipher.cpp" ExcludeProjConfig="Debug;"/>
     <File Name="Sockets_server_multiple.cpp" ExcludeProjConfig="Debug;"/>
     <File Name="Sockets_server_single.cpp" ExcludeProjConfig="Debug;"/>
     <File Name="Sockets_client.cpp" ExcludeProjConfig="Debug;"/>
